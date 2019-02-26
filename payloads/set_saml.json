@@ -1,0 +1,95 @@
+{
+  "objectId": null,
+  "identifierUris": null,
+  "certificateNotificationEmail": null,
+  "signOnUrl": "",
+  "logoutUrl": "",
+  "replyUrls": null,
+  "relayState": "",
+  "idpIdentifier": null,
+  "idpReplyUrl": null,
+  "defaultClaimIssuancePolicy": {
+    "version": 1,
+    "defaultTokenType": "SAML",
+    "allowPassThruUsers": "true",
+    "includeBasicClaimSet": "True",
+    "claimsSchema": [
+      {
+        "samlClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+        "source": "user",
+        "extensionID": null,
+        "id": "userprincipalname",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+        "source": "User",
+        "extensionID": null,
+        "id": "givenname",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+        "source": "User",
+        "extensionID": null,
+        "id": "surname",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+        "source": "User",
+        "extensionID": null,
+        "id": "mail",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+        "source": "User",
+        "extensionID": null,
+        "id": "userprincipalname",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "https://aws.amazon.com/SAML/Attributes/Role",
+        "source": "user",
+        "extensionID": null,
+        "id": "assignedroles",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "https://aws.amazon.com/SAML/Attributes/RoleSessionName",
+        "source": "user",
+        "extensionID": null,
+        "id": "userprincipalname",
+        "value": null,
+        "transformationId": null
+      },
+      {
+        "samlClaimType": "https://aws.amazon.com/SAML/Attributes/SessionDuration",
+        "source": null,
+        "extensionID": null,
+        "id": null,
+        "value": "3600",
+        "transformationId": null
+      }
+    ],
+    "claimsTransformations": []
+  },
+  "claimNameIdentifier": "userprincipalname",
+  "claimExtensionNameIdentifier": null,
+  "claimMethodNameIdentifier": "mail",
+  "claimMethodDomainName": null,
+  "tokenIssuancePolicy": {
+    "version": 1,
+    "signingAlgorithm": "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+    "tokenResponseSigningPolicy": "TokenOnly",
+    "samlTokenVersion": "2.0"
+  },
+  "tokenIssuancePolicySource": "policy"
+}

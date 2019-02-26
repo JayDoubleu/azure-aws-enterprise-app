@@ -1,0 +1,24 @@
+{
+  "id": "8b1025e4-1dd2-430b-a150-2ef79cd700f5",
+  "displayName": null,
+  "homepageUrl": "http://aws.amazon.com/",
+  "logo215Url": "https://az495088.vo.msecnd.net/app-logo/aws_215.png",
+  "logo45Url": "https://az495088.vo.msecnd.net/app-logo/aws_45.png",
+  "description": null,
+  "publisher": "Amazon",
+  "ssoConfigureInstruction2FwLink": "512725",
+  "displayCategories": [
+    "developerServices"
+  ],
+  "appAlreadyAdded": false,
+  "inPreview": false,
+  "canBeInstantiated": true,
+  "signupUrl": null,
+  "appKey": "aws",
+  "displayCategory": "Developer services",
+  "ssoOptions": [
+    "password",
+    "federated",
+    "existing"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "templateId": "aws",
+  "__ko_mapping__": {
+    "ignore": [],
+    "include": [
+      "_destroy"
+    ],
+    "copy": [],
+    "observe": [],
+    "mappedProperties": {
+      "templateId": true
+    },
+    "copiedProperties": {}
+  }
+}
