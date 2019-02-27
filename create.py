@@ -127,6 +127,35 @@ def set_saml(app_objectId):
         print(e)
 
 
+def set_saml_claims(app_objectId):
+    try:
+        print("Setting enterprise application %s saml settings" % app_name)
+        with open('payloads/set_saml.json') as f:
+            payload = json.load(f)
+
+        payload.update({
+            "objectId": app_objectId,
+            "certificateNotificationEmail": email,
+            "idpReplyUrl": "https://signin.aws.amazon.com/saml",
+            "replyUrls": ["https://signin.aws.amazon.com/saml"],
+            "idpIdentifier": idp_identifier,
+            "identifierUris": [
+                idp_identifier,
+            ]
+        })
+
+        s = requests.Session()
+        s.headers.update(headers)
+        response = s.post(
+            api_url + '/ApplicationSso/' + app_objectId +
+            '/FederatedSsoClaimsPolicyV2',
+            data=json.dumps(payload))
+        return response.status_code
+    except Exception as e:
+        print('Failed to set saml settings')
+        print(e)
+
+
 def create_provisioning_template(app_objectId):
     try:
         print("Setting enterprise application %s provisioning template" %
@@ -172,12 +201,14 @@ try:
     app_objectId, app_appId = create_app()
     time.sleep(5)
     if enable_saml(app_objectId) == 204:
-        if set_saml(app_objectId) == 204:
-            if create_provisioning_template(app_objectId):
+        if create_provisioning_template(app_objectId):
+            time.sleep(5)
+            set_aws_creds(app_objectId)
+            if set_saml(app_objectId) == 204:
                 time.sleep(5)
-                set_aws_creds(app_objectId)
-                print("Aplication %s with appId: %s created." % (app_name,
-                                                                 app_appId))
+                if set_saml_claims(app_objectId) == 204:
+                    print("Aplication %s with appId: %s created." %
+                          (app_name, app_appId))
 
 except Exception as e:
     print("Application %s creation failed" % app_name)
