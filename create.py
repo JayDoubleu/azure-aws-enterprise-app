@@ -204,6 +204,7 @@ try:
         if create_provisioning_template(app_objectId):
             time.sleep(5)
             set_aws_creds(app_objectId)
+            time.sleep(15)
             if set_saml(app_objectId) == 204:
                 time.sleep(5)
                 if set_saml_claims(app_objectId) == 204:
