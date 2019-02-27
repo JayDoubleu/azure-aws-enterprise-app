@@ -129,7 +129,7 @@ def set_saml(app_objectId):
 
 def set_saml_claims(app_objectId):
     try:
-        print("Setting enterprise application %s saml settings" % app_name)
+        print("Setting enterprise application %s saml claims" % app_name)
         with open('payloads/set_saml.json') as f:
             payload = json.load(f)
 
@@ -152,7 +152,7 @@ def set_saml_claims(app_objectId):
             data=json.dumps(payload))
         return response.status_code
     except Exception as e:
-        print('Failed to set saml settings')
+        print('Failed to set saml claims')
         print(e)
 
 
@@ -162,7 +162,6 @@ def create_provisioning_template(app_objectId):
               app_name)
         with open('payloads/create_provisioningtemplate.json') as f:
             payload = json.load(f)
-
         s = requests.Session()
         s.headers.update(headers)
         response = s.post(
@@ -196,6 +195,20 @@ def set_aws_creds(app_objectId):
         print('Failed to set aws credentials')
         print(e)
 
+def start_provisioning(app_objectId):
+    try:
+        print("Setting enterprise application %s to start provisioning" % app_name)
+        headers.update({'Content-Length': '0'})
+        s = requests.Session()
+        s.headers.update(headers)
+        response = s.post(
+            api_url + '/UserProvisioning/' + app_objectId + '/start',
+            )
+        return response.status_code
+    except Exception as e:
+        print('Failed to start provisioning')
+        print(e)
+
 
 try:
     app_objectId, app_appId = create_app()
@@ -208,8 +221,9 @@ try:
             if set_saml(app_objectId) == 204:
                 time.sleep(5)
                 if set_saml_claims(app_objectId) == 204:
-                    print("Aplication %s with appId: %s created." %
-                          (app_name, app_appId))
+                    time.sleep(5)
+                    start_provisioning(app_objectId) 
+                    print("Aplication %s with appId: %s created." % (app_name, app_appId))
 
 except Exception as e:
     print("Application %s creation failed" % app_name)
