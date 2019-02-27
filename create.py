@@ -195,15 +195,16 @@ def set_aws_creds(app_objectId):
         print('Failed to set aws credentials')
         print(e)
 
+
 def start_provisioning(app_objectId):
     try:
-        print("Setting enterprise application %s to start provisioning" % app_name)
+        print("Setting enterprise application %s to start provisioning" %
+              app_name)
         headers.update({'Content-Length': '0'})
         s = requests.Session()
         s.headers.update(headers)
         response = s.post(
-            api_url + '/UserProvisioning/' + app_objectId + '/start',
-            )
+            api_url + '/UserProvisioning/' + app_objectId + '/start', )
         return response.status_code
     except Exception as e:
         print('Failed to start provisioning')
@@ -222,8 +223,9 @@ try:
                 time.sleep(5)
                 if set_saml_claims(app_objectId) == 204:
                     time.sleep(5)
-                    start_provisioning(app_objectId) 
-                    print("Aplication %s with appId: %s created." % (app_name, app_appId))
+                    start_provisioning(app_objectId)
+                    print("Aplication %s with appId: %s created." %
+                          (app_name, app_appId))
 
 except Exception as e:
     print("Application %s creation failed" % app_name)
