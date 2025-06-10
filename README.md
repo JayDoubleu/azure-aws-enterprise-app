@@ -1,4 +1,7 @@
 # azure-aws-enterprise-app
+
+> **⚠️ ARCHIVED**: This repository was created when there was no automation available to create AWS Enterprise Apps on Azure for AWS SSO authentication. This functionality is now available through various methods and tools like Terraform, making this repository obsolete.
+
 Creates AWS Enterprise app on Azure
 
 Requirements: 
